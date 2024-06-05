@@ -17,7 +17,7 @@ class tasks(commands.Cog):
                     statuses = [
                         [None, f"Watching {server_count} server{'s' if server_count != 1 else ''}!", 10],
                         [None, f"Helping you build Guilded bots!", 30],
-                        [None, f"https://github.com/YumYummity/Guilded-Bot-Template/tree/main", 60]
+                        [None, f"https://cloudy.botdash.xyz/", 60]
                     ]
                     for status in statuses:
                         try:

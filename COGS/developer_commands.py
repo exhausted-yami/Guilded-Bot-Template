@@ -113,7 +113,7 @@ class developer(commands.Cog):
 
     @commands.command(name='eval', aliases=['exec'], description='eval/exec something for devs only')
     async def asyncexecute(self, ctx:commands.Context):
-        troll = False # do you want to troll someone who tries to run eval without permissions?
+        troll = True # do you want to troll someone who tries to run eval without permissions?
         if not ctx.author.id in self.bot.CONFIGS.owners:
             if troll:
                 await ctx.message.add_reaction(90001732)

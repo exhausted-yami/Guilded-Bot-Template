@@ -5,7 +5,7 @@ class information(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
-    @commands.command(name='help', description='Help for every command this bot has!', aliases=['h'])
+    @commands.command(name='cmd', description='Receive a message with all of my commands and helpful resources for Cloudy', aliases=[''])
     async def help(self, ctx:commands.Context, *, command:str=None) -> guilded.Message|guilded.ChatMessage:
         '''
         Help command
@@ -30,7 +30,7 @@ class information(commands.Cog):
         if command is None:
             embedig = guilded.Embed(
                 title='Command Help',
-                description=f'Command Count: `{len(self.bot.commands)}`\n**Do {prefixdata}help <command> for more info!**{inviteandsupport}'
+                description=f'Command Count: `{len(self.bot.commands)}`\n**Do {prefixdata}cmd <command> for more info!**{inviteandsupport}'
             )
             embedig.add_field(name="Commands", value=", ".join(helpcmd), inline=False)
         elif command:
