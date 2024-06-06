@@ -37,13 +37,11 @@ class moderation(commands.Cog):
         user_name = user.display_name
         user_id = user.id
         user_avatar = user.avatar
-        user_since = user.joined_at.strftime("%d/%m/%Y")  # Format joined at date
         user_created = user.created_at.strftime("%d/%m/%Y")  # Format creation date
         user_bot = user.bot
 
         embed = guilded.Embed(title=f"{user_name}'s Info", color=0xA7C6FF)
         embed.add_field(name="ID", value=user_id, inline=True)
-        embed.add_field(name="Joined Server", value=user_since, inline=True)
         embed.add_field(name="Account Created", value=user_created, inline=True)
         embed.add_field(name="Bot", value=user_bot, inline=True)
         embed.set_thumbnail(url=user_avatar)
