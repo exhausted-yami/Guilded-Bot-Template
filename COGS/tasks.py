@@ -15,9 +15,12 @@ class tasks(commands.Cog):
                     # [emoji id / None, status message, delay]
                     server_count = len(await self.bot.fetch_servers())
                     statuses = [
-                        [None, f"Watching {server_count} server{'s' if server_count != 1 else ''}!", 10],
-                        [None, f"Helping you build Guilded bots!", 30],
-                        [None, f"https://cloudy.botdash.xyz/", 60]
+                        [None, f"Watching {server_count} server{'s' if server_count != 1 else ''}!", 120],
+                        [None, f"https://cloudy.botdash.xyz/", 30],
+                        [None, f"Competing in epic RPG boss battle!", 60],
+                        [None, f"Playing as a Retail Assistant", 78],
+                        [None, f"Listening to Fly me to the moon", 36],
+                        [None, f"Join the Support Server!", 84]
                     ]
                     for status in statuses:
                         try:
