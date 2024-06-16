@@ -20,7 +20,7 @@ class developer(commands.Cog):
         try:
             self.bot.load_extension(cog_name)
             self.bot.print(f'{self.bot.COLORS.cog_logs}[COGS] {self.bot.COLORS.normal_message}Loaded cog {self.bot.COLORS.item_name}{cog_name}')
-            em = guilded.Embed(description="**Cog loaded.**", color=0x363942)
+            em = guilded.Embed(description="**Cog loaded.**", color=0xA7C6FF)
             await ctx.reply(embed=em, private=ctx.message.private)
         except Exception as e:
             if ocog_name == "all":
@@ -33,13 +33,13 @@ class developer(commands.Cog):
                     except commands.ExtensionAlreadyLoaded:
                         pass
                     except Exception as e:
-                        em = guilded.Embed(description=f"Failed to load cog `{cog}`", color=0x363942)
+                        em = guilded.Embed(description=f"Failed to load cog `{cog}`", color=0xA7C6FF)
                         await ctx.reply(embed=em, private=ctx.message.private)
                         self.bot.traceback(e)
-                em = guilded.Embed(description="**All cogs loaded.**", color=0x363942)
+                em = guilded.Embed(description="**All cogs loaded.**", color=0xA7C6FF)
                 await ctx.reply(embed=em, private=ctx.message.private)
                 return
-            em = guilded.Embed(description="Failed to load cog.", color=0x363942)
+            em = guilded.Embed(description="Failed to load cog.", color=0xA7C6FF)
             await ctx.reply(embed=em, private=ctx.message.private)
             self.bot.traceback(e)
 
@@ -55,7 +55,7 @@ class developer(commands.Cog):
             for cog in [cog for cog in self.bot.extensions]:
                 if cog in self.bot.extensions:
                     if self.bot.extensions[cog] == sys.modules[__name__]:
-                        em = guilded.Embed(description=f"`{cog}` cog wasn't unloaded, you do need access to these commands. Use reload instead.", color=0x363942)
+                        em = guilded.Embed(description=f"`{cog}` cog wasn't unloaded, you do need access to these commands. Use reload instead.", color=0xA7C6FF)
                         await ctx.reply(embed=em, private=ctx.message.private)
                         continue
                     try:
@@ -64,7 +64,7 @@ class developer(commands.Cog):
                     except commands.ExtensionNotLoaded:
                         pass
                 else:
-                    em = guilded.Embed(description=f"`{cog}` cog isn't loaded.", color=0x363942)
+                    em = guilded.Embed(description=f"`{cog}` cog isn't loaded.", color=0xA7C6FF)
                     await ctx.reply(embed=em, private=ctx.message.private)
             em = guilded.Embed(description="**All cogs unloaded.**", color=0x363942)
             await ctx.reply(embed=em, private=ctx.message.private)
@@ -75,10 +75,10 @@ class developer(commands.Cog):
                     self.bot.print(f'{self.bot.COLORS.cog_logs}[COGS] {self.bot.COLORS.normal_message}Unloaded cog {self.bot.COLORS.item_name}{cog_name}')
                 except commands.ExtensionNotLoaded:
                     pass
-                em = guilded.Embed(description="**Cog unloaded.**", color=0x363942)
+                em = guilded.Embed(description="**Cog unloaded.**", color=0xA7C6FF)
                 await ctx.reply(embed=em, private=ctx.message.private)
             else:
-                em = guilded.Embed(description="That cog isn't loaded.", color=0x363942)
+                em = guilded.Embed(description="That cog isn't loaded.", color=0xA7C6FF)
                 await ctx.reply(embed=em, private=ctx.message.private)
 
     @commands.command(name='reload', description='Reloads a cog.')
@@ -95,19 +95,19 @@ class developer(commands.Cog):
                     self.bot.reload_extension(cog)
                     self.bot.print(f'{self.bot.COLORS.cog_logs}[COGS] {self.bot.COLORS.normal_message}Reloaded cog {self.bot.COLORS.item_name}{cog}')
                 except Exception as e:
-                    em = guilded.Embed(description=f"Failed to reload cog `{cog}`", color=0x363942)
+                    em = guilded.Embed(description=f"Failed to reload cog `{cog}`", color=0xA7C6FF)
                     await ctx.reply(embed=em, private=ctx.message.private)
                     self.bot.traceback(e)
-            em = guilded.Embed(description="**All cogs reloaded.**", color=0x363942)
+            em = guilded.Embed(description="**All cogs reloaded.**", color=0xA7C6FF)
             await ctx.reply(embed=em, private=ctx.message.private)
         else:
             try:
                 self.bot.reload_extension(cog_name)
                 self.bot.print(f'{self.bot.COLORS.cog_logs}[COGS] {self.bot.COLORS.normal_message}Reloaded cog {self.bot.COLORS.item_name}{cog_name}')
-                em = guilded.Embed(description="**Cog reloaded.**", color=0x363942)
+                em = guilded.Embed(description="**Cog reloaded.**", color=0xA7C6FF)
                 await ctx.reply(embed=em, private=ctx.message.private)
             except Exception as e:
-                em = guilded.Embed(description="Failed to reload cog.", color=0x363942)
+                em = guilded.Embed(description="Failed to reload cog.", color=0xA7C6FF)
                 await ctx.reply(embed=em, private=ctx.message.private)
                 self.bot.traceback(e)
 

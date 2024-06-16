@@ -30,7 +30,8 @@ class information(commands.Cog):
         if command is None:
             embedig = guilded.Embed(
                 title='Command Help',
-                description=f'Command Count: `{len(self.bot.commands)}`\n**Do {prefixdata}cmd <command> for more info!**{inviteandsupport}'
+                description=f'Command Count: `{len(self.bot.commands)}`\n**Do {prefixdata}cmd <command> for more info!**{inviteandsupport}',
+                color=0xA7C6FF
             )
             embedig.add_field(name="Commands", value=", ".join(helpcmd), inline=False)
         elif command:
@@ -38,7 +39,8 @@ class information(commands.Cog):
                 return await ctx.reply('Command not found.', private=True)
             embedig = guilded.Embed(
                 title='Command Help',
-                description=f'Command `{helpcmd.qualified_name}`\'s information.{inviteandsupport}'
+                description=f'Command `{helpcmd.qualified_name}`\'s information.{inviteandsupport}',
+                color=0xA7C6FF
             )
             embedig.add_field(name='Command Description', value=f'{helpcmd.description}')
             aliases = helpcmd.aliases
@@ -51,21 +53,23 @@ class information(commands.Cog):
 
     @commands.command(name='invite', description = 'Get the invites for the bot and support server!', aliases = [])
     async def invitecommandlol(self, ctx: commands.Context):
-        await ctx.reply(embed=guilded.Embed(title=f'Invite {self.bot.user.name}!', description=f'[Invite](https://guilded.gg/b/{self.bot.CONFIGS.botid}) || [Support Server]({self.bot.CONFIGS.supportserverinv})', color=guilded.Color.green()), private=ctx.message.private)
+        await ctx.reply(embed=guilded.Embed(title=f'Invite {self.bot.user.name}!', description=f'[Invite](https://guilded.gg/b/{self.bot.CONFIGS.botid}) || [Support Server]({self.bot.CONFIGS.supportserverinv})', color=0xA7C6FF), private=ctx.message.private)
 
     @commands.command(name='prefix', description='Return the bot\'s current prefix!')
     async def prefix(self, ctx: commands.Context):
         prefixdata = (await self.bot.get_prefix(ctx.message))[0]
         embedig = guilded.Embed(
             title='Server Prefix',
-            description=f'The current prefix for this server is `{prefixdata}`.'
+            description=f'The current prefix for this server is `{prefixdata}`.',
+            color=0xA7C6FF
         )
         await ctx.reply(embed=embedig, private=ctx.message.private)
 
     @commands.command(name='ping', description='Check if the bot is online, as well as the latency of it!')
     async def pong(self, ctx: commands.Context):
         embedig = guilded.Embed(
-            title='🏓 Pong'
+            title='🏓 Pong',
+            color=0xA7C6FF
         )
         embedig.add_field(name='Bot Latency',value=f'`{round(self.bot.latency*1000, 3)}` ms',inline=False)
         await ctx.reply(embed=embedig, private=ctx.message.private)

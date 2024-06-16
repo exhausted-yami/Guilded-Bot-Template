@@ -7,35 +7,6 @@ class events(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
-        
-
-    @commands.Cog.listener()
-    async def on_ready(self):
-        db = sqlite3.connect("main.sqlite")
-        cursor = db.cursor()
-        cursor.execute('''CREATE TABLE IF NOT EXISTS main (
-                    user_id INTERGER, wallet INTERGER, bank INTERGER
-                )''')
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.author.bot:
-            return
-        
-        author = message.author
-        db = sqlite3.connect("main.sqlite")
-        cursor = db.cursor()
-        cursor.execute(f"SELECT user_id FROM main WHERE user_id = {author.id}")
-        result = cursor.fetchone()
-        if result is None:
-            sql = ("INSERT INTO main(user_id, wallet, bank) VALUES (?, ?, ?)")
-            val = (author.id, 100, 0)
-            cursor.execute(sql, val)
-        
-        db.commit()
-        cursor.close()
-        db.close()
-    
     @commands.Cog.listener("on_command")
     async def commandwasrun(self, ctx: commands.Context):
         self.bot.print(f'{self.bot.COLORS.command_logs}[COMMAND] {self.bot.COLORS.user_name}{ctx.author.name}{self.bot.COLORS.normal_message} ran command {self.bot.COLORS.item_name}{ctx.command.qualified_name}{self.bot.COLORS.normal_message} on the server {self.bot.COLORS.item_name}{ctx.server.name}{self.bot.COLORS.normal_message}. Full command: {self.bot.COLORS.item_name}{ctx.message.content}')
@@ -66,12 +37,12 @@ class events(commands.Cog):
                 pass
         try:
             default_channel = await event.server.fetch_default_channel()
-            embedig = guilded.Embed(title=f'Thanks for using {self.bot.user.name}!', description=f'I see you invited me, {event.user.mention}!\nThanks for inviting me!', color=guilded.Color.green())
+            embedig = guilded.Embed(title=f'Thanks for using {self.bot.user.name}!', description=f'I see you invited me, {event.user.mention}!\nThanks for inviting me!', color=0xA7C6FF)
             embedig.set_footer(text='Hope you enjoy!')
             embedig.timestamp = datetime.datetime.now(datetime.timezone.utc)
             message = await default_channel.send(embed=embedig)
             prefix = self.bot.get_prefix(message)
-            embedig = guilded.Embed(title=f'Thanks for using {self.bot.user.name}!', description=f'I see you invited me, {event.user.mention}!\nThanks for inviting me! The current prefix for this server is `{prefix}`.\n\nRun `{prefix}help` for help.', color=guilded.Color.green())
+            embedig = guilded.Embed(title=f'Thanks for using {self.bot.user.name}!', description=f'I see you invited me, {event.user.mention}!\nThanks for inviting me! The current prefix for this server is `{prefix}`.\n\nRun `{prefix}help` for help.', color=0xA7C6FF)
             embedig.set_footer(text='Hope you enjoy!')
             embedig.timestamp = datetime.datetime.now(datetime.timezone.utc)
             await message.edit(embed=embedig)
@@ -84,7 +55,7 @@ class events(commands.Cog):
         channel_id = self.bot.CONFIGS.join_leave_logs
         if channel_id:
             channel = self.bot.get_partial_messageable(channel_id)
-            embedig = guilded.Embed(title=f"{self.bot.user.name} left a server.", description=f'**{event.server.name}**' + '\n' + f'**Removed by:** `{"None" if event.member == None else event.member.name} ({"None" if event.member == None else event.member.id})`', color=0x363942)
+            embedig = guilded.Embed(title=f"{self.bot.user.name} left a server.", description=f'**{event.server.name}**' + '\n' + f'**Removed by:** `{"None" if event.member == None else event.member.name} ({"None" if event.member == None else event.member.id})`', color=0xA7C6FF)
             embedig.timestamp = datetime.datetime.now(datetime.timezone.utc)
             try:
                 await channel.send(embed=embedig)
