@@ -1,11 +1,40 @@
 import datetime
-
+import sqlite3
 import guilded
 from guilded.ext import commands
 
 class events(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+    
+        
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        db = sqlite3.connect("main.sqlite")
+        cursor = db.cursor()
+        cursor.execute('''CREATE TABLE IF NOT EXISTS main (
+                    user_id INTERGER, wallet INTERGER, bank INTERGER
+                )''')
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.author.bot:
+            return
+        
+        author = message.author
+        db = sqlite3.connect("main.sqlite")
+        cursor = db.cursor()
+        cursor.execute(f"SELECT user_id FROM main WHERE user_id = {author.id}")
+        result = cursor.fetchone()
+        if result is None:
+            sql = ("INSERT INTO main(user_id, wallet, bank) VALUES (?, ?, ?)")
+            val = (author.id, 100, 0)
+            cursor.execute(sql, val)
+        
+        db.commit()
+        cursor.close()
+        db.close()
     
     @commands.Cog.listener("on_command")
     async def commandwasrun(self, ctx: commands.Context):
