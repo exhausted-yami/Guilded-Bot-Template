@@ -11,6 +11,7 @@ class moderation(commands.Cog):
         self.bot = bot
     
     @commands.command(name="userinfo", description="Get info on users", aliases=["who"])
+    @commands.cooldown(1,60,commands.BucketType.user)
     async def userinfo(self, ctx: commands.Context, *, user: str = None):
         if user is None:
             user = ctx.author
