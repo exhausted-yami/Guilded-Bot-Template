@@ -33,7 +33,7 @@ class information(commands.Cog):
                 description=f'Command Count: `{len(self.bot.commands)}`\n**Do {prefixdata}cmd <command> for more info!**{inviteandsupport}',
                 color=0xA7C6FF
             )
-            embedig.add_field(name="Commands", value=", ".join(helpcmd), inline=False)
+            embedig.add_field(name="Commands", value=", ", inline=False)
         elif command:
             if not helpcmd:
                 return await ctx.reply('Command not found.', private=True)
